@@ -14,6 +14,11 @@
                 "<i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded;$event.stopPropagation();\" class=\"indented tree-icon\"> </i>\n      "+
                 "<span class=\"indented tree-label\" >{{ row.label }} </span>\n  "+
                 "<span ng-show='hover' class='pull-right'>"+
+                  "<span ng-init='plusHover=false' ng-mouseenter='plusHover=true' ng-mouseleave='plusHover=false'>"+
+                    "<i ng-show='!row.branch.data&&!plusHover' class='fa fa-fw fa-plus' ng-click=\"user_add_file_branch($event, row.branch)\"></i>"+
+                    "<i ng-show='!row.branch.data&&plusHover' class='fa fa-fw fa-folder' ng-click=\"user_add_folder_branch($event, row.branch)\"></i>"+
+                    "<i ng-show='!row.branch.data&&plusHover' class='fa fa-fw fa-file' ng-click=\"user_add_file_branch($event, row.branch)\"></i>"+
+                  "</span>"+
                   "<i class='fa fa-fw fa-times' ng-click=\"user_delete_branch($event, row.branch)\"></i>"+
                 "</span> "+
               "</a> \n  "+
@@ -34,10 +39,10 @@
             return void 0;
           };
           if (attrs.iconExpand == null) {
-            attrs.iconExpand = 'glyphicon glyphicon-plus  fa fa-plus';
+            attrs.iconExpand = 'fa fa-folder';
           }
           if (attrs.iconCollapse == null) {
-            attrs.iconCollapse = 'glyphicon glyphicon-minus fa fa-minus';
+            attrs.iconCollapse = 'fa fa-folder-open';
           }
           if (attrs.iconLeaf == null) {
             attrs.iconLeaf = 'glyphicon glyphicon-file  fa fa-file';
