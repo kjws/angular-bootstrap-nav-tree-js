@@ -245,6 +245,7 @@
           if (scope.treeControl != null) {
             if (angular.isObject(scope.treeControl)) {
               tree = scope.treeControl;
+              tree.for_all_ancestors = for_all_ancestors;
               tree.expand_all = function() {
                 return for_each_branch(function(b, level) {
                   return b.expanded = true;
