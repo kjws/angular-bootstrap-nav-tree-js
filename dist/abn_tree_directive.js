@@ -7,7 +7,18 @@
     '$timeout', function($timeout) {
       return {
         restrict: 'E',
-        template: "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  <li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected||user_set_active(row.branch) ? ' active':'')\" class=\"abn-tree-row\">\n    <a href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      <i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded;$event.stopPropagation();\" class=\"indented tree-icon\"> </i>\n      <span class=\"indented tree-label\" >{{ row.label }} </span>\n  <span ng-show='hover' class='pull-right'><i class='fa fa-fw fa-times' ng-click=\"user_delete_branch($event, row.branch)\"></i></span> </a> \n  </li>\n</ul>",
+        template:
+          "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  "+
+            "<li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected||user_set_active(row.branch) ? ' active':'')\" class=\"abn-tree-row\">\n    "+
+              "<a href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      "+
+                "<i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded;$event.stopPropagation();\" class=\"indented tree-icon\"> </i>\n      "+
+                "<span class=\"indented tree-label\" >{{ row.label }} </span>\n  "+
+                "<span ng-show='hover' class='pull-right'>"+
+                  "<i class='fa fa-fw fa-times' ng-click=\"user_delete_branch($event, row.branch)\"></i>"+
+                "</span> "+
+              "</a> \n  "+
+            "</li>\n"+
+          "</ul>",
         replace: true,
         scope: {
           treeData: '=',
