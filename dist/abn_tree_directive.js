@@ -199,11 +199,20 @@
             });
             add_branch_to_list = function(level, branch, visible) {
               var child, child_visible, tree_icon, _i, _len, _ref, _results;
+              var pattern = /\.(\w+)$/
+                , match = pattern.exec(branch.label)
+								, ext = match && match[1];
+              var iconClassMap = {
+    						txt: 'fa fa-file-text-o',
+    						jpg: 'fa fa-file-image-o blue',
+    						png: 'fa fa-file-image-o orange',
+    						gif: 'fa fa-file-image-o red'
+    					};
               if (branch.expanded == null) {
                 branch.expanded = false;
               }
               if (!branch.children || branch.children.length === 0) {
-                tree_icon = attrs.iconLeaf;
+                tree_icon = iconClassMap[ext] || attrs.iconLeaf;
               } else {
                 if (branch.expanded) {
                   tree_icon = attrs.iconCollapse;
