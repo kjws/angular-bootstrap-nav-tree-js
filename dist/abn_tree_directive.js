@@ -11,11 +11,12 @@
           "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  "+
             "<li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected||user_set_active(row.branch) ? ' active':'')\" class=\"abn-tree-row\">\n    "+
               "<a href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      "+
-                "<i ng-class=\"row.tree_icon\" ng-click=\"row.branch.expanded = !row.branch.expanded;$event.stopPropagation();\" class=\"indented tree-icon\"> </i>\n      "+
+                "<i ng-class=\"row.tree_icon\" class=\"indented tree-icon\"> </i>\n      "+
                 "<span class=\"indented tree-label\" >{{ row.label }} </span>\n  "+
                 "<span ng-show='hover' class='pull-right'>"+
                   "<span ng-init='plusHover=false' ng-mouseenter='plusHover=true' ng-mouseleave='plusHover=false'>"+
-                    "<i ng-show='!row.branch.data&&!plusHover' class='fa fa-fw fa-plus' ng-click=\"user_add_file_branch($event, row.branch)\"></i>"+
+                    "<i ng-show='!row.branch.data&&!plusHover' class='fa fa-fw fa-plus'></i>"+
+                    "<i ng-show='!row.branch.data&&plusHover' ng-click='plusHover=false;$event.stopPropagation();' class='fa fa-fw fa-angle-right'></i>"+
                     "<i ng-show='!row.branch.data&&plusHover' class='fa fa-fw fa-folder' ng-click=\"user_add_folder_branch($event, row.branch)\"></i>"+
                     "<i ng-show='!row.branch.data&&plusHover' class='fa fa-fw fa-file' ng-click=\"user_add_file_branch($event, row.branch)\"></i>"+
                   "</span>"+
@@ -117,9 +118,13 @@
               }
             }
           };
+          scope.user_add_file_branch = scope.treeControl.addFile;
+          scope.user_add_folder_branch = scope.treeControl.addFolder;
           scope.user_delete_branch = scope.treeControl.delete;
           scope.user_set_active = scope.treeControl.setActive;
           scope.user_clicks_branch = function($event, branch) {
+            $event.stopPropagation();
+            branch.expanded = !branch.expanded;
             if (branch !== selected_branch) {
               return select_branch(branch);
             } else {
