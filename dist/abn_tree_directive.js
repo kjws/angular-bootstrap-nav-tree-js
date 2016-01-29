@@ -10,7 +10,7 @@
         template:
           "<ul class=\"nav nav-list nav-pills nav-stacked abn-tree\">\n  "+
             "<li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected||user_set_active(row.branch) ? ' active':'')\" class=\"abn-tree-row\">\n    "+
-              "<a href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      "+
+              "<a id='{{row.branch.label}}' href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      "+
                 "<i ng-class=\"row.tree_icon\" class=\"indented tree-icon\"> </i>\n      "+
                 "<span class=\"indented tree-label\" >{{ row.label }} </span>\n  "+
                 "<span ng-show='hover' class='pull-right'>"+
@@ -216,7 +216,8 @@
     						txt: 'fa fa-file-text-o',
     						jpg: 'fa fa-file-image-o blue',
     						png: 'fa fa-file-image-o orange',
-    						gif: 'fa fa-file-image-o red'
+    						gif: 'fa fa-file-image-o red',
+                null: 'fa fa-folder'
     					};
               if (branch.expanded == null) {
                 branch.expanded = false;
