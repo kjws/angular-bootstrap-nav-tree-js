@@ -222,6 +222,12 @@
               if (branch.expanded == null) {
                 branch.expanded = false;
               }
+              const order_branch = branch.children.filter(function (b) {
+                return !b.data;
+              }).concat(branch.children.filter(function (b) {
+                return !!b.data;
+              }));
+              branch.children = order_branch;
               if (!branch.children || branch.children.length === 0) {
                 tree_icon = iconClassMap[ext] || attrs.iconLeaf;
               } else {
