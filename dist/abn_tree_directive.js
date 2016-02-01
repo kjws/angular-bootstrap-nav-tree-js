@@ -123,7 +123,7 @@
           scope.user_delete_branch = scope.treeControl.delete;
           scope.user_set_active = scope.treeControl.setActive;
           scope.user_clicks_branch = function($event, branch) {
-            $event.stopPropagation();
+            // $event.stopPropagation();
             branch.expanded = !branch.expanded;
             if (branch !== selected_branch) {
               return select_branch(branch);
