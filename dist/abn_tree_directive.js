@@ -12,7 +12,7 @@
             "<li ng-repeat=\"row in tree_rows | filter:{visible:true} track by row.branch.uid\" ng-animate=\"'abn-tree-animate'\" ng-class=\"'level-' + {{ row.level }} + (row.branch.selected||user_set_active(row.branch) ? ' active':'')\" class=\"abn-tree-row\">\n    "+
               "<a id='{{row.branch.label}}' href='javascript:void(0);' ng-init='hover=false' ng-mouseenter='hover=true' ng-mouseleave='hover=false' ng-click=\"user_clicks_branch($event, row.branch)\">\n      "+
                 "<i ng-class=\"row.tree_icon\" class=\"indented tree-icon\"> </i>\n      "+
-                "<span class=\"indented tree-label\" >{{ row.label }} </span>\n  "+
+                "<span class=\"indented tree-label\" >{{ short_name(row.label) }} </span>\n  "+
                 "<span ng-show='hover' class='pull-right'>"+
                   "<span ng-init='plusHover=false' ng-mouseenter='plusHover=true' ng-mouseleave='plusHover=false'>"+
                     "<i ng-show='!row.branch.data&&!plusHover' class='fa fa-fw fa-plus'></i>"+
@@ -130,6 +130,12 @@
             } else {
               return select_branch(null);
             }
+          };
+          scope.short_name = function (label) {
+            if (label.length > 15) {
+              return label.substr(0, 13) + '...';
+            }
+            return label;
           };
           get_parent = function(child) {
             var parent;
