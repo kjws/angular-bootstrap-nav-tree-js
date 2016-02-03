@@ -94,7 +94,11 @@
                 selected_branch.selected = false;
               }
               selected_branch = null;
-              return;
+              return $timeout(function() {
+                return scope.onSelect({
+                  branch: {}
+                });
+              });
             }
             if (branch !== selected_branch) {
               if (selected_branch != null) {
@@ -126,6 +130,7 @@
             // $event.stopPropagation();
             branch.expanded = !branch.expanded;
             if (branch !== selected_branch) {
+              branch.expanded = true;
               return select_branch(branch);
             } else {
               return select_branch(null);
