@@ -227,11 +227,23 @@
                 , match = pattern.exec(branch.label)
 								, ext = match && match[1];
               var iconClassMap = {
-    						txt: 'fa fa-file-text-o',
-    						jpg: 'fa fa-file-image-o blue',
-    						png: 'fa fa-file-image-o orange',
-    						gif: 'fa fa-file-image-o red',
-                null: 'fa fa-folder'
+                'txt': 'fa fa-file-text-o',
+                'jpg': 'fa fa-file-image-o blue',
+                'jpeg': 'fa fa-file-image-o blue',
+                'png': 'fa fa-file-image-o orange',
+                'gif': 'fa fa-file-image-o red',
+                'svg': 'fa fa-file-image-o',
+                'pdf': 'fa fa-file-pdf-o',
+                'zip': 'fa fa-file-archive-o',
+                'rar': 'fa fa-file-archive-o',
+                '7z': 'fa fa-file-archive-o',
+                'ppt': 'fa fa-file-powerpoint-o',
+                'pptx': 'fa fa-file-powerpoint-o',
+                'xls': 'fa fa-file-excel-o',
+                'xlsx': 'fa fa-file-excel-o',
+                'doc': 'fa fa-file-word-o',
+                'docx': 'fa fa-file-word-o',
+                'null': 'fa fa-folder'
     					};
               if (branch.expanded == null) {
                 branch.expanded = false;
